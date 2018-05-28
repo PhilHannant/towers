@@ -6,6 +6,7 @@ import uk.philhannant.towers.model.Point;
 import uk.philhannant.towers.model.Receiver;
 import uk.philhannant.towers.model.Transmitter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -312,7 +313,22 @@ public class PowerOptimiserImplUtilityTest {
                         TestScenarios.testScenarios.get(6).scenario));
     }
 
-    //add remove duplicate test
+    @Test
+    public void removeDuplicatesTest(){
+        List<Transmitter> duplicatedList = new ArrayList<>();
+        duplicatedList.add(new Transmitter(1, new Point(1, 6), 1));
+        duplicatedList.add(new Transmitter(2, new Point(5, 0), 1));
+        duplicatedList.add(new Transmitter(3, new Point(1, 6), 1));
+        duplicatedList.add(new Transmitter(2, new Point(1, 0), 2));
+        duplicatedList.add(new Transmitter(3, new Point(5, 0), 2));
+        List<Transmitter> expected = ImmutableList.of(
+                new Transmitter(1, new Point(1, 6), 1),
+                new Transmitter(2, new Point(1, 0), 2),
+                new Transmitter(3, new Point(5, 0), 2)
+        );
+        assertEquals(expected, powerOptimiserImpl.removeDuplicateTransmitters(duplicatedList));
+
+    }
 
     /**
      * Test to check getClosestTransmitters is returning a list containing transmitters with updated power values.
