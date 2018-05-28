@@ -312,7 +312,9 @@ public class PowerOptimiserImplUtilityTest {
                         powerOptimiserImpl.getPossiblePowerIncrease(TestScenarios.testScenarios.get(6).scenario),
                         TestScenarios.testScenarios.get(6).scenario));
     }
-
+    /**
+     * Test to check removeDuplicate method returns unique list containing transmitters with the highest power value.
+     */
     @Test
     public void removeDuplicatesTest(){
         List<Transmitter> duplicatedList = new ArrayList<>();
